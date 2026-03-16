@@ -1,0 +1,1236 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FazPeloZap - Crie anúncios na Shopee pelo WhatsApp</title>
+  <meta
+    name="description"
+    content="Crie anúncios na Shopee pelo WhatsApp. Envie fotos do produto, responda algumas perguntas e o FazPeloZap cria seu anúncio sem complicação. Ideal para quem quer vender online e acha o painel da Shopee difícil."
+  />
+  <meta
+    name="keywords"
+    content="vender na Shopee, criar anúncio na Shopee, como vender na Shopee, anunciar na Shopee, vender online, Shopee para iniciantes, vender pelo WhatsApp"
+  />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+  <style>
+    :root {
+      --primary-color: #25d366;
+      --secondary-color: #ee4d2d;
+      --text-color: #222;
+      --muted-text: #666;
+      --light-bg: #f8f9fa;
+      --white: #fff;
+      --dark: #111;
+      --border: #e8e8e8;
+      --font-family: 'Poppins', sans-serif;
+      --shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+      --radius: 18px;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: var(--font-family);
+      color: var(--text-color);
+      line-height: 1.6;
+      overflow-x: hidden;
+      background: #fff;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    ul {
+      list-style: none;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    section {
+      padding: 84px 0;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(37, 211, 102, 0.12);
+      color: #119b45;
+      padding: 10px 16px;
+      border-radius: 999px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      margin-bottom: 18px;
+    }
+
+    .btn-cta {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background-color: var(--primary-color);
+      color: var(--white);
+      padding: 18px 34px;
+      border-radius: 999px;
+      font-weight: 700;
+      font-size: 1.05rem;
+      border: none;
+      cursor: pointer;
+      transition: 0.25s ease;
+      box-shadow: 0 10px 20px rgba(37, 211, 102, 0.22);
+      text-align: center;
+    }
+
+    .btn-cta:hover {
+      transform: translateY(-2px);
+      background: #1fbe59;
+    }
+
+    .btn-cta i {
+      margin-right: 10px;
+      font-size: 1.2rem;
+    }
+
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 16px 26px;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      font-weight: 600;
+      background: #fff;
+      transition: 0.25s ease;
+    }
+
+    .btn-secondary:hover {
+      border-color: #ccc;
+      transform: translateY(-2px);
+    }
+
+    h1, h2, h3 {
+      font-weight: 800;
+      line-height: 1.2;
+      margin-bottom: 18px;
+    }
+
+    h1 {
+      font-size: 3.25rem;
+      color: var(--dark);
+      letter-spacing: -0.03em;
+    }
+
+    h2 {
+      font-size: 2.4rem;
+      text-align: center;
+      letter-spacing: -0.02em;
+    }
+
+    h3 {
+      font-size: 1.25rem;
+    }
+
+    .section-subtitle {
+      max-width: 760px;
+      margin: 0 auto 46px;
+      text-align: center;
+      color: var(--muted-text);
+      font-size: 1.08rem;
+    }
+
+    .lead {
+      font-size: 1.15rem;
+      color: var(--muted-text);
+      margin-bottom: 28px;
+    }
+
+    .small-note {
+      display: block;
+      margin-top: 14px;
+      font-size: 0.95rem;
+      color: var(--muted-text);
+    }
+
+    header {
+      background-color: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(10px);
+      padding: 16px 0;
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 1000;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+    }
+
+    header .container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      font-weight: 800;
+      font-size: 1.35rem;
+      color: var(--dark);
+    }
+
+    .logo img {
+      height: 38px;
+      margin-right: 10px;
+    }
+
+    .nav-menu {
+      display: flex;
+      gap: 20px;
+      align-items: center;
+    }
+
+    .nav-link {
+      font-weight: 600;
+      color: #333;
+      transition: color 0.2s ease;
+    }
+
+    .nav-link:hover {
+      color: var(--primary-color);
+    }
+
+    .menu-toggle {
+      display: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+
+    #hero {
+      padding-top: 150px;
+      padding-bottom: 90px;
+      background: linear-gradient(135deg, rgba(37, 211, 102, 0.10) 0%, rgba(255,255,255,1) 60%);
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 46px;
+      align-items: center;
+    }
+
+    .hero-copy h1 {
+      max-width: 720px;
+    }
+
+    .hero-copy .lead {
+      max-width: 680px;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-bottom: 8px;
+    }
+
+    .hero-proof {
+      margin-top: 18px;
+      font-size: 0.98rem;
+      color: var(--muted-text);
+      font-weight: 500;
+    }
+
+    .hero-card {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      box-shadow: var(--shadow);
+      padding: 18px;
+    }
+
+    .hero-demo {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    .mock-phone,
+    .mock-shopee {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      overflow: hidden;
+      min-height: 440px;
+    }
+
+    .mock-header {
+      padding: 14px 16px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .mock-phone .mock-header {
+      background: #effaf2;
+      color: #128c3e;
+    }
+
+    .mock-shopee .mock-header {
+      background: #fff3ef;
+      color: var(--secondary-color);
+    }
+
+    .mock-body {
+      padding: 16px;
+    }
+
+    .msg {
+      max-width: 88%;
+      padding: 11px 14px;
+      border-radius: 12px;
+      font-size: 0.92rem;
+      margin-bottom: 12px;
+    }
+
+    .msg.user {
+      background: #dcf8c6;
+      margin-left: auto;
+      border-top-right-radius: 4px;
+    }
+
+    .msg.bot {
+      background: #f5f5f5;
+      border-top-left-radius: 4px;
+    }
+
+    .mini-images {
+      display: flex;
+      gap: 8px;
+      margin-top: 8px;
+    }
+
+    .mini-images img {
+      width: 54px;
+      height: 54px;
+      object-fit: cover;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+    }
+
+    .product-preview img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 14px;
+      margin-bottom: 14px;
+    }
+
+    .product-preview .price {
+      color: var(--secondary-color);
+      font-size: 1.35rem;
+      font-weight: 800;
+      margin: 8px 0;
+    }
+
+    .product-preview .meta {
+      font-size: 0.95rem;
+      color: var(--muted-text);
+      margin-bottom: 10px;
+    }
+
+    .product-preview ul {
+      list-style: disc;
+      padding-left: 20px;
+      color: #444;
+      font-size: 0.95rem;
+    }
+
+    .trusted-strip {
+      margin-top: 22px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      font-size: 0.95rem;
+      color: var(--muted-text);
+    }
+
+    .trusted-item {
+      background: #fff;
+      border: 1px solid var(--border);
+      padding: 10px 14px;
+      border-radius: 999px;
+      font-weight: 600;
+    }
+
+    #audience-bar {
+      padding: 22px 0;
+      background: var(--white);
+      border-top: 1px solid #f0f0f0;
+      border-bottom: 1px solid #f0f0f0;
+    }
+
+    .audience-bar-content {
+      text-align: center;
+      font-weight: 600;
+      color: #444;
+    }
+
+    #como-funciona {
+      background-color: var(--light-bg);
+    }
+
+    .steps-container {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      text-align: center;
+    }
+
+    .step-card {
+      background: var(--white);
+      padding: 34px 26px;
+      border-radius: var(--radius);
+      box-shadow: 0 8px 22px rgba(0,0,0,0.05);
+      border: 1px solid #f0f0f0;
+      transition: 0.25s ease;
+    }
+
+    .step-card:hover {
+      transform: translateY(-4px);
+    }
+
+    .step-icon {
+      font-size: 2.5rem;
+      color: var(--primary-color);
+      margin-bottom: 18px;
+    }
+
+    .step-number {
+      font-weight: 700;
+      font-size: 0.98rem;
+      color: var(--secondary-color);
+      margin-bottom: 8px;
+      display: block;
+    }
+
+    .flex-container {
+      display: flex;
+      align-items: center;
+      gap: 50px;
+    }
+
+    .flex-image,
+    .flex-content {
+      flex: 1;
+    }
+
+    .flex-image img {
+      max-width: 100%;
+      border-radius: 20px;
+      box-shadow: var(--shadow);
+      border: 1px solid var(--border);
+    }
+
+    .problem-list {
+      margin-top: 14px;
+    }
+
+    .problem-list li {
+      display: flex;
+      align-items: flex-start;
+      margin-bottom: 15px;
+      font-size: 1.08rem;
+    }
+
+    .problem-list li::before {
+      font-family: "Font Awesome 6 Free";
+      font-weight: 900;
+      margin-right: 14px;
+      margin-top: 2px;
+    }
+
+    #problema .problem-list li::before {
+      content: "\f00d";
+      color: #e74c3c;
+    }
+
+    #solucao .problem-list li::before {
+      content: "\f00c";
+      color: var(--primary-color);
+    }
+
+    #solucao {
+      background: var(--light-bg);
+    }
+
+    .highlight-box {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 18px;
+      margin-top: 20px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.04);
+      font-weight: 600;
+      color: #333;
+    }
+
+    #exemplo {
+      background: #fff;
+    }
+
+    .example-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      align-items: start;
+    }
+
+    .chat-container {
+      border: 1px solid #ddd;
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+    }
+
+    .chat-header {
+      background-color: var(--primary-color);
+      color: var(--white);
+      padding: 14px 16px;
+      display: flex;
+      align-items: center;
+      font-weight: 700;
+      gap: 10px;
+    }
+
+    .chat-header img {
+      height: 30px;
+      width: 30px;
+      object-fit: contain;
+    }
+
+    .chat-body {
+      background-color: #e5ddd5;
+      padding: 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .message {
+      max-width: 84%;
+      padding: 12px 14px;
+      border-radius: 12px;
+      position: relative;
+      font-size: 0.95rem;
+    }
+
+    .message.bot {
+      background-color: var(--white);
+      align-self: flex-start;
+      border-top-left-radius: 4px;
+    }
+
+    .message.user {
+      background-color: #dcf8c6;
+      align-self: flex-end;
+      border-top-right-radius: 4px;
+    }
+
+    .message-img {
+      max-width: 86px;
+      border-radius: 8px;
+      margin-top: 8px;
+      border: 1px solid #ddd;
+    }
+
+    .listing-card {
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 18px;
+      box-shadow: var(--shadow);
+      background: #fff;
+    }
+
+    .listing-card .listing-label {
+      display: inline-block;
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--secondary-color);
+      background: #fff3ef;
+      padding: 6px 10px;
+      border-radius: 999px;
+      margin-bottom: 14px;
+    }
+
+    .listing-card img {
+      width: 100%;
+      height: 240px;
+      object-fit: cover;
+      border-radius: 14px;
+      margin-bottom: 14px;
+    }
+
+    .listing-card .listing-price {
+      color: var(--secondary-color);
+      font-size: 1.45rem;
+      font-weight: 800;
+      margin: 8px 0 10px;
+    }
+
+    .listing-card p {
+      color: #555;
+      margin-bottom: 12px;
+    }
+
+    .listing-card ul {
+      list-style: disc;
+      padding-left: 20px;
+      color: #444;
+    }
+
+    #vantagens {
+      background-color: var(--light-bg);
+    }
+
+    .benefits-container {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+    }
+
+    .benefit-card {
+      background: var(--white);
+      padding: 26px;
+      border-radius: 18px;
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.05);
+      border: 1px solid #f2f2f2;
+    }
+
+    .benefit-icon {
+      font-size: 1.8rem;
+      color: var(--primary-color);
+      margin-top: 3px;
+      min-width: 28px;
+    }
+
+    #for-who {
+      background: #fff;
+    }
+
+    .audience-cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+    }
+
+    .audience-card {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 24px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.04);
+    }
+
+    #seo-content {
+      background-color: var(--light-bg);
+    }
+
+    .seo-box {
+      max-width: 900px;
+      margin: 0 auto;
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 28px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.04);
+    }
+
+    #final-cta {
+      background: linear-gradient(135deg, #1eb95c 0%, #25d366 100%);
+      color: var(--white);
+      text-align: center;
+    }
+
+    #final-cta h2,
+    #final-cta .lead {
+      color: var(--white);
+    }
+
+    #final-cta .btn-cta {
+      background: #fff;
+      color: #128c3e;
+      box-shadow: 0 12px 24px rgba(255,255,255,0.2);
+    }
+
+    #final-cta .btn-cta:hover {
+      background: #f8f8f8;
+    }
+
+    #final-cta .small-note {
+      color: rgba(255,255,255,0.85);
+    }
+
+    footer {
+      background-color: #1b1b1b;
+      color: rgba(255, 255, 255, 0.72);
+      padding: 54px 0 22px 0;
+      font-size: 0.94rem;
+    }
+
+    footer h4 {
+      color: var(--white);
+      margin-bottom: 18px;
+    }
+
+    footer .container {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr 1fr;
+      gap: 28px;
+    }
+
+    .footer-links li {
+      margin-bottom: 10px;
+    }
+
+    .footer-links a:hover {
+      color: #fff;
+    }
+
+    .footer-bottom {
+      grid-column: 1 / -1;
+      text-align: center;
+      margin-top: 24px;
+      padding-top: 18px;
+      border-top: 1px solid rgba(255,255,255,0.08);
+    }
+
+    @media (max-width: 1100px) {
+      h1 {
+        font-size: 2.8rem;
+      }
+
+      .hero-grid,
+      .example-grid,
+      .hero-demo,
+      .audience-cards {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 992px) {
+      h2 {
+        font-size: 2rem;
+      }
+
+      .flex-container {
+        flex-direction: column;
+        gap: 28px;
+      }
+
+      .flex-content {
+        text-align: center;
+      }
+
+      .problem-list li {
+        text-align: left;
+      }
+    }
+
+    @media (max-width: 768px) {
+      section {
+        padding: 70px 0;
+      }
+
+      h1 {
+        font-size: 2.2rem;
+      }
+
+      h2 {
+        font-size: 1.8rem;
+      }
+
+      .steps-container,
+      .benefits-container {
+        grid-template-columns: 1fr;
+      }
+
+      .nav-menu {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background-color: var(--white);
+        flex-direction: column;
+        padding: 20px;
+        box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+      }
+
+      .nav-menu.active {
+        display: flex;
+      }
+
+      .menu-toggle {
+        display: block;
+      }
+
+      footer .container {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+
+      .hero-actions {
+        flex-direction: column;
+      }
+
+      .btn-cta,
+      .btn-secondary {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <a href="#" class="logo">
+        <img src="https://i.ibb.co/X7X88V5/logo-fazpelozap.png" alt="Logo FazPeloZap" />
+        <span>FazPeloZap</span>
+      </a>
+
+      <div class="menu-toggle" id="mobile-menu">
+        <i class="fas fa-bars"></i>
+      </div>
+
+      <ul class="nav-menu">
+        <li><a href="#como-funciona" class="nav-link">Como funciona</a></li>
+        <li><a href="#exemplo" class="nav-link">Exemplo</a></li>
+        <li><a href="#vantagens" class="nav-link">Vantagens</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <section id="hero">
+    <div class="container">
+      <div class="hero-grid">
+        <div class="hero-copy">
+          <span class="badge">
+            <i class="fab fa-whatsapp"></i>
+            Feito para quem quer vender na Shopee sem complicação
+          </span>
+
+          <h1>Crie anúncios na Shopee sem mexer no painel complicado</h1>
+          <p class="lead">
+            Mande as fotos do produto no WhatsApp, responda algumas perguntas simples e o
+            <strong>FazPeloZap cria o anúncio para você</strong>.
+          </p>
+
+          <div class="hero-actions">
+            <a href="https://wa.me/SEU_NUMERO" class="btn-cta">
+              <i class="fab fa-whatsapp"></i>
+              Começar pelo WhatsApp
+            </a>
+
+            <a href="#exemplo" class="btn-secondary">
+              Ver exemplo
+            </a>
+          </div>
+
+          <span class="small-note">
+            Ideal para quem quer <strong>vender na Shopee</strong>, mas trava na hora de criar o anúncio.
+          </span>
+
+          <div class="trusted-strip">
+            <span class="trusted-item">Sem aprender painel complicado</span>
+            <span class="trusted-item">Sem perder tempo preenchendo um monte de campo</span>
+            <span class="trusted-item">Feito para pequenos vendedores</span>
+          </div>
+        </div>
+
+        <div class="hero-card">
+          <div class="hero-demo">
+            <div class="mock-phone">
+              <div class="mock-header">
+                <i class="fab fa-whatsapp"></i>
+                WhatsApp
+              </div>
+              <div class="mock-body">
+                <div class="msg user">
+                  Quero criar um anúncio
+                </div>
+                <div class="msg bot">
+                  Perfeito! Me envie pelo menos 3 fotos do produto.
+                </div>
+                <div class="msg user">
+                  Enviei as fotos
+                  <div class="mini-images">
+                    <img src="https://images.unsplash.com/photo-1511499767150-a48a237f0083?auto=format&fit=crop&w=300&q=80" alt="Foto do produto 1" />
+                    <img src="https://images.unsplash.com/photo-1577803645773-f96470509666?auto=format&fit=crop&w=300&q=80" alt="Foto do produto 2" />
+                    <img src="https://images.unsplash.com/photo-1511920170033-f8396924c348?auto=format&fit=crop&w=300&q=80" alt="Foto do produto 3" />
+                  </div>
+                </div>
+                <div class="msg bot">
+                  Esse óculos tem proteção UV400?
+                </div>
+                <div class="msg user">
+                  Sim. E acompanha estojo.
+                </div>
+                <div class="msg bot">
+                  Ótimo. Agora me diga o preço e quantas unidades você tem.
+                </div>
+              </div>
+            </div>
+
+            <div class="mock-shopee">
+              <div class="mock-header">
+                <i class="fas fa-store"></i>
+                Anúncio criado
+              </div>
+              <div class="mock-body product-preview">
+                <img src="https://images.unsplash.com/photo-1511499767150-a48a237f0083?auto=format&fit=crop&w=800&q=80" alt="Óculos de sol para anúncio" />
+                <h3>Óculos de Sol Aviador Unissex UV400 com Estojo</h3>
+                <div class="price">R$ 89,90</div>
+                <div class="meta">Título, descrição e informações montadas automaticamente</div>
+                <ul>
+                  <li>Proteção UV400</li>
+                  <li>Estilo aviador</li>
+                  <li>Unissex</li>
+                  <li>Acompanha estojo</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="hero-proof">
+            Você conversa no WhatsApp. O FazPeloZap monta o anúncio.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="audience-bar">
+    <div class="container">
+      <div class="audience-bar-content">
+        Feito para lojinhas, óticas pequenas, vendedores iniciantes e quem quer começar a anunciar na Shopee de um jeito simples.
+      </div>
+    </div>
+  </section>
+
+  <section id="como-funciona">
+    <div class="container">
+      <h2>Como funciona</h2>
+      <p class="section-subtitle">
+        Você não precisa entender a Shopee nem ficar procurando onde clicar. O processo é simples e acontece pelo WhatsApp.
+      </p>
+
+      <div class="steps-container">
+        <div class="step-card">
+          <i class="fas fa-camera step-icon"></i>
+          <span class="step-number">Passo 1</span>
+          <h3>Envie as fotos do produto</h3>
+          <p>Você manda as fotos direto na conversa, como já faz normalmente no WhatsApp.</p>
+        </div>
+
+        <div class="step-card">
+          <i class="fas fa-comments step-icon"></i>
+          <span class="step-number">Passo 2</span>
+          <h3>Responda perguntas simples</h3>
+          <p>O FazPeloZap pergunta só o que falta para montar um anúncio completo.</p>
+        </div>
+
+        <div class="step-card">
+          <i class="fas fa-store step-icon"></i>
+          <span class="step-number">Passo 3</span>
+          <h3>Seu anúncio é criado</h3>
+          <p>O sistema monta o anúncio na Shopee sem você precisar aprender aquele painel complicado.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="problema">
+    <div class="container flex-container">
+      <div class="flex-content">
+        <h2>Dificuldade para vender na Shopee?</h2>
+        <p class="lead">
+          Muita gente quer vender online, mas trava quando tenta criar o primeiro anúncio.
+        </p>
+        <ul class="problem-list">
+          <li>O painel da Shopee parece confuso para quem está começando</li>
+          <li>Tem muitos campos e detalhes para preencher</li>
+          <li>É chato pensar em título, descrição e informações do produto</li>
+          <li>Muita gente desiste antes mesmo de publicar o primeiro item</li>
+        </ul>
+      </div>
+
+      <div class="flex-image">
+        <img src="https://i.ibb.co/P4WfFqS/problem-illustration.png" alt="Pessoa com dificuldade para criar anúncio na Shopee" />
+      </div>
+    </div>
+  </section>
+
+  <section id="solucao">
+    <div class="container flex-container">
+      <div class="flex-image">
+        <img src="https://i.ibb.co/8Yj0g8N/solution-illustration.png" alt="Pessoa usando o WhatsApp para criar anúncio na Shopee" />
+      </div>
+
+      <div class="flex-content">
+        <h2>O FazPeloZap faz isso por você</h2>
+        <p class="lead">
+          Em vez de ficar tentando entender a Shopee sozinho, você cria o anúncio conversando no WhatsApp.
+        </p>
+        <ul class="problem-list">
+          <li>Você manda as fotos do produto</li>
+          <li>O sistema faz perguntas fáceis de responder</li>
+          <li>O anúncio é montado para você</li>
+        </ul>
+
+        <div class="highlight-box">
+          Não sabe usar o painel da Shopee? Sem problema. O FazPeloZap foi feito justamente para quem quer vender de um jeito mais simples.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="exemplo">
+    <div class="container">
+      <h2>Veja um exemplo</h2>
+      <p class="section-subtitle">
+        A ideia é simples: você conversa no WhatsApp e o FazPeloZap transforma isso em um anúncio pronto.
+      </p>
+
+      <div class="example-grid">
+        <div class="chat-container">
+          <div class="chat-header">
+            <img src="https://i.ibb.co/X7X88V5/logo-fazpelozap.png" alt="Logo FazPeloZap" />
+            <span>FazPeloZap</span>
+          </div>
+
+          <div class="chat-body">
+            <div class="message user">
+              Quero anunciar esse óculos
+              <br />
+              <img src="https://images.unsplash.com/photo-1511499767150-a48a237f0083?auto=format&fit=crop&w=300&q=80" alt="Foto do óculos" class="message-img" />
+            </div>
+
+            <div class="message bot">
+              Perfeito. Me mande pelo menos 3 fotos do produto para eu montar um anúncio melhor.
+            </div>
+
+            <div class="message user">
+              Pronto, mandei.
+            </div>
+
+            <div class="message bot">
+              Ótimo. Esse óculos tem proteção UV400?
+            </div>
+
+            <div class="message user">
+              Sim. E acompanha estojo.
+            </div>
+
+            <div class="message bot">
+              Certo. Agora me diga o preço e quantas unidades você tem.
+            </div>
+
+            <div class="message user">
+              R$ 89,90 e tenho 6 unidades.
+            </div>
+
+            <div class="message bot">
+              Perfeito! Já tenho o necessário para criar seu anúncio. ✅
+            </div>
+          </div>
+        </div>
+
+        <div class="listing-card">
+          <span class="listing-label">Exemplo de anúncio</span>
+          <img src="https://images.unsplash.com/photo-1511499767150-a48a237f0083?auto=format&fit=crop&w=900&q=80" alt="Prévia de anúncio de óculos na Shopee" />
+          <h3>Óculos de Sol Aviador Unissex UV400 com Estojo</h3>
+          <div class="listing-price">R$ 89,90</div>
+          <p>
+            Óculos de sol estilo aviador, ideal para uso no dia a dia. Modelo unissex, leve, bonito e com proteção UV400.
+          </p>
+          <ul>
+            <li>Proteção UV400</li>
+            <li>Modelo unissex</li>
+            <li>Estilo aviador</li>
+            <li>Acompanha estojo</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="vantagens">
+    <div class="container">
+      <h2>Vantagens</h2>
+      <p class="section-subtitle">
+        O FazPeloZap foi pensado para quem quer vender na Shopee com menos esforço e mais clareza.
+      </p>
+
+      <div class="benefits-container">
+        <div class="benefit-card">
+          <i class="fas fa-bolt benefit-icon"></i>
+          <div>
+            <h3>Cadastre produtos mais rápido</h3>
+            <p>Você perde menos tempo criando anúncio e pode focar mais em vender.</p>
+          </div>
+        </div>
+
+        <div class="benefit-card">
+          <i class="fas fa-mobile-screen-button benefit-icon"></i>
+          <div>
+            <h3>Sem precisar aprender o painel da Shopee</h3>
+            <p>O processo acontece no WhatsApp, de um jeito muito mais fácil para quem está começando.</p>
+          </div>
+        </div>
+
+        <div class="benefit-card">
+          <i class="fas fa-circle-check benefit-icon"></i>
+          <div>
+            <h3>Menos chance de esquecer informações</h3>
+            <p>O sistema vai perguntando o que falta para o anúncio ficar mais completo.</p>
+          </div>
+        </div>
+
+        <div class="benefit-card">
+          <i class="fas fa-store benefit-icon"></i>
+          <div>
+            <h3>Ideal para pequenos vendedores</h3>
+            <p>Perfeito para lojinhas, óticas pequenas e quem quer começar a vender online.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="for-who">
+    <div class="container">
+      <h2>Para quem é o FazPeloZap?</h2>
+      <p class="section-subtitle">
+        Se você quer anunciar na Shopee, mas não gosta de complicação, essa ferramenta foi feita para você.
+      </p>
+
+      <div class="audience-cards">
+        <div class="audience-card">
+          <h3>Lojas físicas</h3>
+          <p>Quem já vende no balcão e quer começar a vender online sem sofrer com sistema complicado.</p>
+        </div>
+
+        <div class="audience-card">
+          <h3>Vendedores iniciantes</h3>
+          <p>Quem quer aprender como vender na Shopee de um jeito prático e sem medo de errar.</p>
+        </div>
+
+        <div class="audience-card">
+          <h3>Pequenos empreendedores</h3>
+          <p>Quem precisa colocar produtos à venda com rapidez e quer usar algo simples no dia a dia.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="seo-content">
+    <div class="container">
+      <div class="seo-box">
+        <h2>Quer começar a vender na Shopee?</h2>
+        <p class="lead">
+          Se você quer <strong>vender na Shopee</strong>, mas acha o processo difícil, o FazPeloZap pode facilitar muito sua vida. Em vez de quebrar a cabeça para entender o painel, você manda as fotos do produto no WhatsApp, responde algumas perguntas e o sistema ajuda a <strong>criar anúncio na Shopee</strong> de forma simples. É uma opção prática para quem está pesquisando <strong>como vender na Shopee</strong>, quer <strong>anunciar na Shopee</strong> mais rápido e começar a <strong>vender online</strong> sem complicação.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section id="final-cta">
+    <div class="container">
+      <h2>Comece a criar anúncios na Shopee em minutos</h2>
+      <p class="lead">
+        Tudo que você precisa é o WhatsApp.
+      </p>
+
+      <a href="https://wa.me/SEU_NUMERO" class="btn-cta">
+        <i class="fab fa-whatsapp"></i>
+        Começar pelo WhatsApp
+      </a>
+
+      <span class="small-note">
+        Simples para usar. Feito para quem quer vender mais sem complicação.
+      </span>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <div>
+        <a href="#" class="logo">
+          <img src="https://i.ibb.co/X7X88V5/logo-fazpelozap.png" alt="Logo FazPeloZap Footer" />
+          <span>FazPeloZap</span>
+        </a>
+        <p style="margin-top: 14px;">
+          A forma mais simples de criar anúncios na Shopee pelo WhatsApp.
+        </p>
+      </div>
+
+      <div>
+        <h4>Navegação</h4>
+        <ul class="footer-links">
+          <li><a href="#como-funciona">Como funciona</a></li>
+          <li><a href="#exemplo">Exemplo</a></li>
+          <li><a href="#vantagens">Vantagens</a></li>
+          <li><a href="mailto:contato@fazpelozap.com.br">Contato</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4>Legal</h4>
+        <ul class="footer-links">
+          <li><a href="#">Política de Privacidade</a></li>
+          <li><a href="#">Termos de Uso</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2026 FazPeloZap. FazPeloZap ajuda você a criar anúncios e vender na Shopee de forma simples.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const menuToggle = document.getElementById('mobile-menu');
+    const navMenu = document.querySelector('.nav-menu');
+
+    menuToggle.addEventListener('click', () => {
+      navMenu.classList.toggle('active');
+    });
+  </script>
+</body>
+</html>
