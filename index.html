@@ -146,6 +146,37 @@
       gap: 40px;
     }
 
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 4px;
+    }
+
+    .hamburger span {
+      display: block;
+      width: 25px;
+      height: 3px;
+      background: var(--text-color);
+      border-radius: 3px;
+      transition: all 0.3s ease;
+    }
+
+    .hamburger.active span:nth-child(1) {
+      transform: translateY(8px) rotate(45deg);
+    }
+
+    .hamburger.active span:nth-child(2) {
+      opacity: 0;
+    }
+
+    .hamburger.active span:nth-child(3) {
+      transform: translateY(-8px) rotate(-45deg);
+    }
+
     #hero {
       padding-top: 150px;
       text-align: center;
@@ -454,6 +485,7 @@
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 30px;
+      align-items: start;
     }
 
     .footer-bottom {
@@ -486,6 +518,46 @@
         flex-direction: column;
       }
 
+      footer .container {
+        grid-template-columns: 1fr;
+      }
+
+    }
+
+    @media(max-width:768px) {
+
+      .hamburger {
+        display: flex;
+      }
+
+      .nav-menu {
+        display: none;
+        flex-direction: column;
+        gap: 0;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: #fff;
+        box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+        padding: 10px 0;
+      }
+
+      .nav-menu.active {
+        display: flex;
+      }
+
+      .nav-menu li a {
+        display: block;
+        padding: 14px 30px;
+        font-weight: 600;
+        border-bottom: 1px solid rgba(0,0,0,0.05);
+      }
+
+      .nav-menu li:last-child a {
+        border-bottom: none;
+      }
+
     }
   </style>
 </head>
@@ -499,6 +571,12 @@
         <img src="imgs/transparent-logo-icon.png" alt="Logo FazPeloZap">
         FazPeloZap
       </div>
+
+      <button class="hamburger" id="mobile-menu" aria-label="Abrir menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
 
       <ul class="nav-menu">
         <li><a href="#como-funciona">Como funciona</a></li>
@@ -876,7 +954,7 @@
 
       <div class="footer-bottom">
         <p>© 2026 FazPeloZap. Criar anúncios na Shopee pelo WhatsApp.</p>
-        <p class="version-badge">v1.0.6</p>
+        <p class="version-badge">v1.0.7</p>
       </div>
 
     </div>
@@ -890,8 +968,16 @@
     if (menuToggle) {
       menuToggle.addEventListener('click', () => {
         navMenu.classList.toggle('active');
+        menuToggle.classList.toggle('active');
       });
     }
+
+    document.querySelectorAll('.nav-menu a').forEach(link => {
+      link.addEventListener('click', () => {
+        navMenu.classList.remove('active');
+        menuToggle.classList.remove('active');
+      });
+    });
 
     const faqItems = document.querySelectorAll('.faq-item');
 
