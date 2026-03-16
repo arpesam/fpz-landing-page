@@ -81,6 +81,12 @@
       font-weight: 700;
       font-size: 1.1rem;
       box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .btn-cta:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
     }
 
     .btn-cta i {
@@ -175,10 +181,16 @@
     }
 
     .step-card {
-      background: #fff;
-      padding: 40px;
-      border-radius: 15px;
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        background: var(--white);
+        padding: 40px;
+        border-radius: 15px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .step-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 25px rgba(0,0,0,0.08);
     }
 
     .step-icon {
@@ -331,6 +343,12 @@
       color: #fff;
     }
 
+    #final-cta .btn-cta {
+      background: #fff;
+      color: var(--primary-color);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+    }
+
     /* FOOTER */
 
     footer {
@@ -382,6 +400,7 @@
       <ul class="nav-menu">
         <li><a href="#como-funciona">Como funciona</a></li>
         <li><a href="#vantagens">Vantagens</a></li>
+        <li><a href="#final-cta">Comece agora</a></li>
       </ul>
 
     </div>
