@@ -124,7 +124,7 @@
 
     .nav-menu {
       display: flex;
-      gap: 20px;
+      gap: 40px;
     }
 
     #hero {
@@ -331,6 +331,80 @@
       gap: 20px;
     }
 
+    /* FAQ */
+
+    #faq {
+      background-color: var(--light-bg);
+    }
+
+    .faq-lead {
+      text-align: center;
+      max-width: 700px;
+      margin: 0 auto 40px;
+      color: #666;
+    }
+
+    .faq-list {
+      max-width: 850px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    .faq-item {
+      background: var(--white);
+      border: 1px solid #e9e9e9;
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.04);
+    }
+
+    .faq-question {
+      width: 100%;
+      background: none;
+      border: none;
+      padding: 22px 24px;
+      font-family: var(--font-family);
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text-color);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      text-align: left;
+      cursor: pointer;
+    }
+
+    .faq-question i {
+      color: var(--primary-color);
+      transition: transform 0.3s ease;
+      margin-left: 15px;
+      flex-shrink: 0;
+    }
+
+    .faq-item.active .faq-question i {
+      transform: rotate(45deg);
+    }
+
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.35s ease, padding 0.35s ease;
+      padding: 0 24px;
+    }
+
+    .faq-answer p {
+      margin: 0;
+      padding-bottom: 22px;
+      color: #666;
+    }
+
+    .faq-item.active .faq-answer {
+      max-height: 300px;
+      padding: 0 24px;
+    }
+
     /* FINAL CTA */
 
     #final-cta {
@@ -410,6 +484,7 @@
       <ul class="nav-menu">
         <li><a href="#como-funciona">Como funciona</a></li>
         <li><a href="#vantagens">Vantagens</a></li>
+        <li><a href="#faq">Perguntas</a></li>
         <li><a href="#final-cta">Comece agora</a></li>
       </ul>
 
@@ -636,6 +711,107 @@
     </div>
   </section>
 
+  <section id="faq">
+    <div class="container">
+      <h2>Perguntas frequentes</h2>
+      <p class="lead faq-lead">Tire suas dúvidas sobre como o FazPeloZap funciona.</p>
+
+      <div class="faq-list">
+
+        <div class="faq-item">
+          <button class="faq-question">
+            <span>O que é o FazPeloZap?</span>
+            <i class="fas fa-plus"></i>
+          </button>
+          <div class="faq-answer">
+            <p>O FazPeloZap é uma ferramenta que ajuda você a criar anúncios na Shopee usando apenas o WhatsApp. Você envia fotos do produto, responde algumas perguntas simples e o sistema organiza as informações para montar o anúncio.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            <span>Eu preciso saber usar a Shopee?</span>
+            <i class="fas fa-plus"></i>
+          </button>
+          <div class="faq-answer">
+            <p>Não. A ideia do FazPeloZap é justamente ajudar quem acha o painel da Shopee complicado. Você conversa pelo WhatsApp e o sistema vai guiando você.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            <span>Como funciona na prática?</span>
+            <i class="fas fa-plus"></i>
+          </button>
+          <div class="faq-answer">
+            <p>Você envia pelo menos 3 fotos do produto, responde algumas perguntas e o FazPeloZap monta o anúncio para você. O processo foi pensado para ser simples e rápido.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            <span>Eu preciso ter conta na Shopee?</span>
+            <i class="fas fa-plus"></i>
+          </button>
+          <div class="faq-answer">
+            <p>Sim. Para vender na Shopee você precisa ter uma conta de vendedor. Se você ainda não tiver, podemos orientar como começar.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            <span>O FazPeloZap publica o anúncio automaticamente?</span>
+            <i class="fas fa-plus"></i>
+          </button>
+          <div class="faq-answer">
+            <p>O objetivo do FazPeloZap é deixar esse processo o mais simples possível pelo WhatsApp. Nesta fase inicial, algumas etapas podem evoluir com o tempo conforme o produto avança.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            <span>Quanto custa usar o FazPeloZap?</span>
+            <i class="fas fa-plus"></i>
+          </button>
+          <div class="faq-answer">
+            <p>No momento o FazPeloZap está gratuito para os primeiros usuários. No futuro poderão existir planos pagos com recursos adicionais.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            <span>Preciso instalar algum aplicativo?</span>
+            <i class="fas fa-plus"></i>
+          </button>
+          <div class="faq-answer">
+            <p>Não. Você só precisa do WhatsApp. Toda a interação acontece pela conversa.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            <span>Quanto tempo leva para criar um anúncio?</span>
+            <i class="fas fa-plus"></i>
+          </button>
+          <div class="faq-answer">
+            <p>Normalmente poucos minutos. Basta enviar as fotos do produto e responder algumas perguntas simples.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            <span>O FazPeloZap é da Shopee?</span>
+            <i class="fas fa-plus"></i>
+          </button>
+          <div class="faq-answer">
+            <p>Não. O FazPeloZap é uma ferramenta independente e não possui vínculo oficial com a Shopee.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
   <section id="final-cta">
 
     <div class="container">
@@ -681,12 +857,37 @@
 
       <div class="footer-bottom">
         <p>© 2026 FazPeloZap. Criar anúncios na Shopee pelo WhatsApp.</p>
-        <p class="version-badge">v1.0.3</p>
+        <p class="version-badge">v1.0.4</p>
       </div>
 
     </div>
 
   </footer>
+
+  <script>
+    const menuToggle = document.getElementById('mobile-menu');
+    const navMenu = document.querySelector('.nav-menu');
+
+    if (menuToggle) {
+      menuToggle.addEventListener('click', () => {
+        navMenu.classList.toggle('active');
+      });
+    }
+
+    const faqItems = document.querySelectorAll('.faq-item');
+
+    faqItems.forEach(item => {
+      const question = item.querySelector('.faq-question');
+
+      question.addEventListener('click', () => {
+        const isActive = item.classList.contains('active');
+        faqItems.forEach(faq => faq.classList.remove('active'));
+        if (!isActive) {
+          item.classList.add('active');
+        }
+      });
+    });
+  </script>
 
 </body>
 
